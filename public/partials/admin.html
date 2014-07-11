@@ -1,0 +1,28 @@
+<h1>Admin section</h1>
+<h2>Polls</h2>
+<div class="row">
+<table class="table table-striped col-md-5">
+	<thead>
+	<tr><th>Name</th><th>Order</th><th>Created at</th><th>Action</th></tr>
+	</thead>
+	<tbody  ui-sortable="sortableOptions" ng-model="polls">
+	<tr ng-repeat="poll in polls | orderBy:'order'" style="cursor: move;">
+		<td>{{poll.question}}</td>
+		<td>{{poll.order}}</td>
+		<td>{{poll.created_at |date :'fullDate'}}</td>
+		<td>
+		<a class="btn btn-success" ng-href="#/poll/{{poll.id}}">Edit</a>
+		<a class="btn btn-danger" ng-click="deletePoll(poll.id, $index)">Delete</a>
+		</td>
+	</tr>
+	</tbody>
+</table>
+<input type="text" ng-model="newPoll" name="new-poll" class="col-md-2">
+<button class="btn btn-primary" ng-click="addPoll()">Add new</button>
+</div>
+
+<ul class="pagination" ng-hide="1==lastPage">
+	<li ng-class="{'disabled':currentPage==1}"><a ng-click="loadFirstPage()">&laquo;</a></li>
+  	<li ng-repeat="page in pages" ng-class="{'active':page==currentPage}"><a  ng-click="loadNthPage(page)">{{page}}</a></li>
+  	<li ng-class="{'disabled':currentPage==lastPage}"><a ng-click="loadLastPage()">&raquo;</a></li>
+</ul>

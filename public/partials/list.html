@@ -1,0 +1,26 @@
+<h1 class="center bread">Polls</h1>
+<div class="poll-wrapper spin-toggle" ng-repeat="poll in polls" >
+	
+	<div class="row poll-row"  ng-if="$index %3 == 0">
+		<div class="col-md-4 spin-toggle" ng-if="polls[$index+0]">
+			<a ng-click="open(polls[$index+0].id, polls[$index+0].question)"  class="poll-item">
+			{{polls[$index+0].question}}</a>
+			<a class="poll-result-link" ng-click="viewPollResult(polls[$index+0].id, polls[$index+0].question)">View Results</a>
+		</div>
+		<div class="col-md-4 spin-toggle" ng-if="polls[$index+1]">
+			<a ng-click="open(polls[$index+1].id, polls[$index+1].question)"  class="poll-item" >
+			{{polls[$index+1].question}}</a>
+			<a class="poll-result-link" ng-click="viewPollResult(polls[$index+1].id, polls[$index+1].question)">View Results</a>
+		</div>
+		<div class="col-md-4 spin-toggle" ng-if="polls[$index+2]">
+			<a ng-click="open(polls[$index+2].id, polls[$index+2].question)"  class="poll-item" >
+			{{polls[$index+2].question}}</a>
+			<a class="poll-result-link" ng-click="viewPollResult(polls[$index+2].id, polls[$index+2].question)">View Results</a>
+		</div>
+	</div>
+</div>
+<ul class="pagination">
+	<li ng-class="{'disabled':currentPage==1}"><a ng-click="loadFirstPage()">&laquo;</a></li>
+  	<li ng-repeat="page in pages" ng-class="{'active':page==currentPage}"><a  ng-click="loadNthPage(page)">{{page}}</a></li>
+  	<li ng-class="{'disabled':currentPage==lastPage}"><a ng-click="loadLastPage()">&raquo;</a></li>
+</ul>

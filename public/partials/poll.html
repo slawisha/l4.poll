@@ -1,0 +1,42 @@
+
+<div class="row">
+    <div class="bread">
+    <h1 class="text-muted inline">Poll name:</h1> <h1 class="inline text-info poll-name">{{poll.question}}</h1>
+    <button class="btn btn-xs btn-warning push-up" ng-click="showTitleForm()" ng-show="hideQuestionForm">Change</button>
+    <form ng-submit="updateQuestion(poll.id, poll.question, poll.order)" ng-hide="hideQuestionForm" >
+        <input type="text" ng-model="poll.question" class="form-control custom-input">
+        <button class="btn btn-sm btn-primary">Save</button>
+    </form>
+    </div>
+    <table class="table table-striped col-md-5">
+        <tr><th>id</th><th>Name</th><th>Votes</th><th>Created at</th><th>Action</th></tr>
+        <tr ng-repeat="answer in answers">
+            <td>{{$index+1}}</td>
+            <td ng-hide="$index == clickedIndex" ng-click="editAnswer($index)" class="click-to-edit">{{answer.text}}</td>
+            <td ng-show="$index == clickedIndex">
+               <form ng-submit="changeAnswer(answer.id, answer.text, answer.votes)" class="inline">
+                    <input type="text" ng-model="answer.text">
+                    <button class="btn btn-sm btn-primary">Save</button>                   
+                </form> 
+                <button class="btn btn-sm btn-danger" ng-click="cancelAnswerEdit()">Cancel</button>
+            </td>
+            <td ng-hide="$index == clickedVote" ng-click="editVotes($index)" class="click-to-edit">{{answer.votes}}</td>
+            <td ng-show="$index == clickedVote">
+               <form ng-submit="changeVotes(answer.id, answer.text, answer.votes)" class="inline">
+                    <input type="number" min="0" ng-model="arpeggio
+                    " ng-value="answer.votes">
+                    <button class="btn btn-sm btn-primary">Save</button>
+                </form> 
+                <button class="btn btn-sm btn-danger" ng-click="cancelVoteEdit()">Cancel</button>
+            </td>
+            <td>{{answer.created_at |date :'fullDate'}}</td>
+            <td>
+                <a class="btn btn-danger" ng-click="deleteAnswer(answer.id, $index)">Delete</a>
+            </td>
+        </tr>
+    </table>
+    <form ng-submit="addAnswer(poll.id)">
+    <input type="text" ng-model="newAnswer" name="new-answer" class="form-control custom-input">
+    <button class="btn btn-primary" >Add new answer</button>
+    </form>
+</div>
