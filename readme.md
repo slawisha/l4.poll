@@ -4,4 +4,4 @@ This small app was built using [laravel4] (http://laravel.com) and [angularJs](h
 
 Front end: pople can take poll and view poll results
 
-Backend: login and create and edit polls add question reorder etc. 
+Backend: login, create and edit polls add question reorder etc. 
